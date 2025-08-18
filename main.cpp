@@ -18,26 +18,24 @@ bool findUmbrella() {
 }
 
 int main() {
-    char choice;
-
-    do {
-        if (isRaining()) {
+    if (isRaining()) {
+        char choice;
+        do {
             cout << "Finding umbrella...\n";
-            
+
             if (findUmbrella()) {
                 cout << "Bring umbrella.\n";
+                break; // umbrella found → end process
             } else {
-                cout << "Can't go without umbrella, checking again...\n";
-                continue; // Loop again without asking user
+                cout << "Can't go without umbrella.\n";
+                cout << "Do you want to check again? (y/n): ";
+                cin >> choice;
             }
-        } else {
-            cout << "Don't bring umbrella.\n";
-        }
 
-        cout << "\nDo you want to check again? (y/n): ";
-        cin >> choice;
-
-    } while (choice == 'y' || choice == 'Y');
+        } while (choice == 'y' || choice == 'Y');
+    } else {
+        cout << "Don't bring umbrella.\n";
+    }
 
     cout << "Process ended.\n";
     return 0;
